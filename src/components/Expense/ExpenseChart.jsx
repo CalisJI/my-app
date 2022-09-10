@@ -3,18 +3,18 @@ import Chart from "../Chart/Chart";
 
 const ExpenseChart = props=> {
     const charDatapoints = [
-        {label: "Jan", value: 0},
-        {label: "Feb", value: 0},
-        {label: "Mar", value: 0},
-        {label: "Apr", value: 0},
-        {label: "May", value: 0},
-        {label: "Jun", value: 0},
-        {label: "Jul", value: 0},
-        {label: "Aug", value: 0},
-        {label: "Sep", value: 0},
-        {label: "Oct", value: 0},
-        {label: "Nov", value: 0},
-        {label: "Dec", value: 0},
+        { key: 1,label: "Jan", value: 0},
+        { key: 2,label: "Feb", value: 0},
+        { key: 3,label: "Mar", value: 0},
+        { key: 4,label: "Apr", value: 0},
+        { key: 5,label: "May", value: 0},
+        { key: 6,label: "Jun", value: 0},
+        { key: 7,label: "Jul", value: 0},
+        { key: 8,label: "Aug", value: 0},
+        { key: 9,label: "Sep", value: 0},
+        { key: 10,label: "Oct", value: 0},
+        { key: 11,label: "Nov", value: 0},
+        { key: 12,label: "Dec", value: 0},
     ];
 
     for(const expense of props.expenses) {

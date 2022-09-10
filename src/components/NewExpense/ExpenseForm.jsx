@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import "./ExpenseForm.css";
+import styles from "./ExpenseForm.module.css";
 
 function ExpenseForm(props) {
   const [enterTitle, setEnterTitle] = useState("");
   const [enterAmount, setEnterAmount] = useState("");
   const [enterDate, setEnterDate] = useState("");
+  const [isValid, setIsValid] = useState(true);
   //   const [userInput, setUserInput] = useState({
   //     enterTitle: "",
   //     enterAmount: "",
@@ -12,10 +13,13 @@ function ExpenseForm(props) {
   //   });
   const titleChangeHandler = (event) => {
     setEnterTitle(event.target.value);
+    if(event.target.value.trim().length> 0){
+      setIsValid(true);
+    }
     // setUserInput({
     //     ...userInput,enterTitle:event.target.value
     // })
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
   const amountChangeHandler = (event) => {
     setEnterAmount(event.target.value);
@@ -33,6 +37,11 @@ function ExpenseForm(props) {
   };
   const submitHandler = (event) => {
     event.preventDefault();
+    if(enterTitle.trim().length===0)
+    {
+      setIsValid(false);
+      return;
+    }
     const expenseData = {
         title:enterTitle,
         amount:+enterAmount,
@@ -46,12 +55,12 @@ function ExpenseForm(props) {
   
   return (
     <form onSubmit={submitHandler}>
-      <div className="new-expense__controls">
-        <div className="new-expense__control">
+      <div className={styles['new-expense__controls']}>
+        <div className={`${styles['new-expense__control']} ${!isValid && styles.isvalid}`}>
           <label>Title</label>
           <input type="text" value={enterTitle} onChange={titleChangeHandler} />
         </div>
-        <div className="new-expense__control">
+        <div className={styles['new-expense__control']}>
           <label>Amount</label>
           <input
             type="number"
@@ -61,7 +70,7 @@ function ExpenseForm(props) {
             onChange={amountChangeHandler}
           />
         </div>
-        <div className="new-expense__control">
+        <div className={styles['new-expense__control']}>
           <label>Date</label>
           <input
             type="date"
@@ -72,7 +81,7 @@ function ExpenseForm(props) {
           />
         </div>
       </div>
-      <div className="new-expense__actions">
+      <div className={styles['new-expense__actions']}>
         <button type="button" onClick={props.onCancel}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
